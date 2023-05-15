@@ -1,0 +1,115 @@
+:root {
+  --main-color: rgb(162, 202, 192);
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+h1 {
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 15vw;
+  gap: 0.5vw;
+  width: 60vw;
+  margin: auto;
+  border: 2px solid black;
+  padding: 10px;
+  border-radius: 15px;
+}
+
+.book {
+  background-color: rgb(185, 204, 199);
+  display: flex;
+  flex-flow: wrap column;
+  align-items: start;
+  justify-content: center;
+  border-radius: 15px;
+  padding: 10px;
+}
+
+.new-book {
+  display: block;
+  margin: 40px auto;
+  font-size: 1.4rem;
+  padding: 10px;
+  border-radius: 15px;
+  border: 2px solid var(--main-color);
+  background-color: rgb(198, 255, 236);
+}
+
+.new-book:hover,
+.add-book:hover {
+  cursor: pointer;
+  background-color: rgb(162, 202, 192);
+  transition: 500ms;
+}
+
+.new-book:active,
+.add-book:active {
+  background-color: rgb(66, 126, 245);
+  transition: 200ms;
+}
+
+.form-div {
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  width: 300px;
+  margin-bottom: 10px;
+  border-radius: 15px;
+  padding-left: 15px;
+  border: 2px solid var(--main-color);
+}
+
+input:focus {
+  background-color: rgba(198, 255, 236, 0.427);
+  outline: rgba(198, 255, 236, 0.427);
+
+}
+
+div.form {
+  text-align: center;
+  margin: 40px;
+}
+
+form
+{
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+    margin-bottom: 40px;
+}
+
+input::placeholder {
+  color: rgb(211, 211, 211);
+}
+
+input[type="checkbox"] {
+  vertical-align: middle;
+  height: 20px;
+  width: 20px;
+  margin-left: 20px;
+}
+
+.checkbox-div {
+  display: flex;
+  margin-left: 10px;
+}
+form > div >label {
+  margin-left: 10px;
+}
+
+.add-book {
+  margin-top: 10px;
+  border: 2px solid var(--main-color);
+}
+
