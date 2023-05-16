@@ -32,12 +32,14 @@ h1 {
   justify-content: center;
   border-radius: 15px;
   padding: 10px;
+  position: relative;
 }
 
 .new-book {
   display: block;
   margin: 40px auto;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
+  min-width: 145px;
   padding: 10px;
   border-radius: 15px;
   border: 2px solid var(--main-color);
@@ -114,3 +116,45 @@ form > div >label {
   border: 2px solid var(--main-color);
 }
 
+.remove-book {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 25px;
+  height: 25px;
+  border-radius: 5px;
+  text-decoration: none;
+  background: transparent;
+  box-shadow: none;
+  border: none;
+  box-sizing: border-box;
+  cursor: pointer;
+  &:before, &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    background-color: #ffffff;
+    width: 100%;
+    height: 2px;
+    transition: height .2s ease-out;
+    border-radius: 3px;
+  }
+  &:before {
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+  &:after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+  &:hover, &:focus {
+    &:before, &:after {
+      height: 4px;
+    }
+  }
+}
+
+.remove-book:hover {
+  background-color: rgb(255, 117, 117);
+  transition: 0.5s;
+}

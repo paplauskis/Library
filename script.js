@@ -26,8 +26,7 @@ function addBookToLibrary() {
     const readValue = read.checked;
     const newBook = new Book(titleValue, authorValue, pagesValue, readValue);
     myLibrary.push(newBook);
-    if (myLibrary.length > 1) myLibrary.shift()
-    console.log(myLibrary.length);
+    if (myLibrary.length > 1) myLibrary.shift();
     displayBooks();
     form.reset();
     formDiv.style.display = 'none';
@@ -38,13 +37,18 @@ submitButton.addEventListener('click', addBookToLibrary());
 function displayBooks() {
   myLibrary.forEach((book) => {
     const books = document.createElement('div');
+    const removeBookButton = document.createElement('button');
+    removeBookButton.classList.add('remove-book');
     books.classList.add('book');
     books.style.whiteSpace = 'pre-line';
     books.textContent = `Title: ${book.title}\nAuthor: ${book.author}\nPages: ${book.pages}\nFinished reading: ${book.read}`;
     const gridDiv = document.querySelector('.container');
+    books.appendChild(removeBookButton);
     gridDiv.appendChild(books);
-  })
-}
+    newBookButton.textContent = 'Add Book';
+    removeBookButton.addEventListener('click', () => books.remove());
+  });
+};
 
 const formDiv = document.querySelector('.form');
 formDiv.style.display = 'none';
@@ -52,7 +56,10 @@ const newBookButton = document.querySelector('.new-book');
 newBookButton.addEventListener('click', () => {
   if (formDiv.style.display === 'none') {
     formDiv.style.display = 'block';
-  } else formDiv.style.display = 'none';
+    newBookButton.textContent = 'Cancel';
+    form.reset();
+  } else {
+    formDiv.style.display = 'none';
+    newBookButton.textContent = 'Add Book';
+  }
 });
-
-
