@@ -1,31 +1,39 @@
 let myLibrary = [];
+const submitButton = document.querySelector('.add-book');
+const form = document.querySelector('#book_input');
+const title = document.querySelector('#title');
+const author = document.querySelector('#author');
+const pages = document.querySelector('#pages');
+const read = document.querySelector('#read');
 
 function Book(title, author, pages, read) {
   this.title = title
   this.author = author
   this.pages = pages
   this.read = read
-
   this.info = function() {
     return `${this.title} by ${this.author}\n${this.pages} pages\n${this.read}`;
   }
 }
 
 function addBookToLibrary() {
-  // const title = prompt('Enter the title of the book:');
-  // const author = prompt('Who is the author of this book?');
-  // const pages = parseInt(prompt('How many pages does the book have?'));
-  // const read = confirm('Have you read this book');
-
-  const newBook = new Book('mew', 'cat', 297, true);
-  const newBookTwo = new Book('Atomic Habits', 'James Clear', 324, false);
-  const newBookThree = new Book('Bubble or Revolution?', 'Bob Robson', 245, true);
-  myLibrary.push(newBook);
-  myLibrary.push(newBookTwo);
-  myLibrary.push(newBookThree); 
+  submitButton.addEventListener('click', (event) => {
+    event.preventDefault();
+  
+    const titleValue = title.value.trim();
+    const authorValue = author.value.trim();
+    const pagesValue = pages.value.trim();
+    const readValue = read.checked;
+    const newBook = new Book(titleValue, authorValue, pagesValue, readValue);
+    myLibrary.push(newBook);
+    if (myLibrary.length > 1) myLibrary.shift()
+    console.log(myLibrary.length);
+    displayBooks();
+    form.reset();
+    formDiv.style.display = 'none';
+  })
 }
-addBookToLibrary();
-// console.log(myLibrary);
+submitButton.addEventListener('click', addBookToLibrary());
 
 function displayBooks() {
   myLibrary.forEach((book) => {
@@ -36,15 +44,15 @@ function displayBooks() {
     const gridDiv = document.querySelector('.container');
     gridDiv.appendChild(books);
   })
-  
 }
-displayBooks();
 
-const form = document.querySelector('.form');
-form.style.display = 'none'
+const formDiv = document.querySelector('.form');
+formDiv.style.display = 'none';
 const newBookButton = document.querySelector('.new-book');
 newBookButton.addEventListener('click', () => {
-  if (form.style.display === 'none') {
-    form.style.display = 'block';
-  } else form.style.display = 'none';
+  if (formDiv.style.display === 'none') {
+    formDiv.style.display = 'block';
+  } else formDiv.style.display = 'none';
 });
+
+
