@@ -12,14 +12,14 @@
   <h1>Book Library</h1>
   <button class="new-book">New book</button>
   <div class="form">
-    <form action="" method="post" class="book-input">
+    <form action="/" method="post" id="book_input">
       <div class="form-div">
         <label for="title">Title:</label>
-        <input type="text" id="title" name="book_title" placeholder="Atomic Habits">
+        <input type="text" id="title" name="book_title" placeholder="Atomic Habits" autocomplete="off" required>
         <label for="author">Author:</label>
-        <input type="text" id="author" name="book_author" placeholder="James Clear">
+        <input type="text" id="author" name="book_author" placeholder="James Clear" autocomplete="off" required>
         <label for="pages">Pages:</label>
-        <input type="tel" id="pages" name="book_pages" placeholder="250">
+        <input type="tel" id="pages" name="book_pages" placeholder="250" autocomplete="off" required>
         <div class="checkbox-div">
         <legend>Have you read the book?</legend>
         <input type="checkbox" value="read" id="read" name="book_read">
