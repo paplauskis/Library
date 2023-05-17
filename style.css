@@ -86,13 +86,12 @@ input:focus {
 
 }
 
-div.form {
+.form {
   text-align: center;
   margin: 40px auto;
 }
 
-form
-{
+form {
     display: inline-block;
     margin-left: auto;
     margin-right: auto;
@@ -115,6 +114,7 @@ input[type="checkbox"] {
   display: flex;
   margin-left: 10px;
 }
+
 form > div >label {
   margin-left: 10px;
 }
@@ -139,6 +139,7 @@ form > div >label {
   border-top: 3px solid rgb(255, 130, 130);
   background-color: silver;
 }
+
 .toggle-status:hover {
   background-color: rgb(185, 204, 199);
   cursor: pointer;
