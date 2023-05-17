@@ -11,13 +11,10 @@ function Book(title, author, pages, read) {
   this.author = author
   this.pages = pages
   this.read = read
-  // this.info = function() {
-  //   return `${this.title} by ${this.author}\n${this.pages} pages\n${this.read}`;
-  // }
 }
-
+//flips read status
 Book.prototype.toggleReadStatus = function() {
-  this.read = !this.read; // Flip the read status
+  this.read = !this.read;
 };
 
 function addBookToLibrary() {
@@ -42,24 +39,24 @@ submitButton.addEventListener('click', addBookToLibrary());
 function displayBooks() {
   myLibrary.forEach((book) => {
     const books = document.createElement('div');
-    const removeBookButton = document.createElement('button');
-    const toggleStatusButton = document.createElement('button');
-    const gridDiv = document.querySelector('.container');
-
     books.classList.add('book');
     books.style.whiteSpace = 'pre-line';
-    books.textContent = `Title: ${book.title}\nAuthor: ${book.author}\nPages: ${book.pages}`;
+    books.textContent = `Title:  ${book.title}\nAuthor:  ${book.author}\nPages:  ${book.pages}`;
+
+    const removeBookButton = document.createElement('button');
     removeBookButton.classList.add('remove-book');
+
+    const toggleStatusButton = document.createElement('button');
     toggleStatusButton.classList.add('toggle-status');
-//////
     toggleStatusButton.textContent = book.read ? 'Mark as not read' : 'Mark as read';
-    books.style.borderColor = book.read ? 'rgb(147, 255, 147)' : 'rgb(255, 136, 136)';
+    toggleStatusButton.style.borderTopColor = book.read ? 'rgb(147, 255, 147)' : 'rgb(255, 136, 136)';
+    
+    const gridDiv = document.querySelector('.container');
+    //toggles Book read/not read status
     toggleStatusButton.addEventListener('click', () => {
       book.toggleReadStatus();
       toggleStatusButton.textContent = book.read ? 'Mark as not read' : 'Mark as read';
-      books.style.borderColor = book.read ? 'rgb(147, 255, 147)' : 'rgb(255, 136, 136)';
-
-//////
+      toggleStatusButton.style.borderTopColor = book.read ? 'rgb(147, 255, 147)' : 'rgb(255, 136, 136)';
     });
 
     books.appendChild(toggleStatusButton);
@@ -68,7 +65,6 @@ function displayBooks() {
     newBookButton.textContent = 'Add Book';
     //removes a book on click
     removeBookButton.addEventListener('click', () => books.remove());
-   
   });
 };
 
@@ -85,8 +81,3 @@ newBookButton.addEventListener('click', () => {
     newBookButton.textContent = 'Add Book';
   }
 });
-// toggles between book read and book not read
-// const toggleStatusButton = document.querySelector('.toggle-status');
-
-
-
