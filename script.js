@@ -11,10 +11,14 @@ function Book(title, author, pages, read) {
   this.author = author
   this.pages = pages
   this.read = read
-  this.info = function() {
-    return `${this.title} by ${this.author}\n${this.pages} pages\n${this.read}`;
-  }
+  // this.info = function() {
+  //   return `${this.title} by ${this.author}\n${this.pages} pages\n${this.read}`;
+  // }
 }
+
+Book.prototype.toggleReadStatus = function() {
+  this.read = !this.read; // Flip the read status
+};
 
 function addBookToLibrary() {
   submitButton.addEventListener('click', (event) => {
@@ -23,8 +27,8 @@ function addBookToLibrary() {
     const titleValue = title.value.trim();
     const authorValue = author.value.trim();
     const pagesValue = pages.value.trim();
-    const readValue = read.checked;
-    const newBook = new Book(titleValue, authorValue, pagesValue, readValue);
+    
+    const newBook = new Book(titleValue, authorValue, pagesValue);
     myLibrary.push(newBook);
     if (myLibrary.length > 1) myLibrary.shift();
     displayBooks();
@@ -32,21 +36,39 @@ function addBookToLibrary() {
     formDiv.style.display = 'none';
   })
 }
+
 submitButton.addEventListener('click', addBookToLibrary());
 
 function displayBooks() {
   myLibrary.forEach((book) => {
     const books = document.createElement('div');
     const removeBookButton = document.createElement('button');
-    removeBookButton.classList.add('remove-book');
+    const toggleStatusButton = document.createElement('button');
+    const gridDiv = document.querySelector('.container');
+
     books.classList.add('book');
     books.style.whiteSpace = 'pre-line';
-    books.textContent = `Title: ${book.title}\nAuthor: ${book.author}\nPages: ${book.pages}\nFinished reading: ${book.read}`;
-    const gridDiv = document.querySelector('.container');
+    books.textContent = `Title: ${book.title}\nAuthor: ${book.author}\nPages: ${book.pages}`;
+    removeBookButton.classList.add('remove-book');
+    toggleStatusButton.classList.add('toggle-status');
+//////
+    toggleStatusButton.textContent = book.read ? 'Mark as not read' : 'Mark as read';
+    books.style.borderColor = book.read ? 'rgb(147, 255, 147)' : 'rgb(255, 136, 136)';
+    toggleStatusButton.addEventListener('click', () => {
+      book.toggleReadStatus();
+      toggleStatusButton.textContent = book.read ? 'Mark as not read' : 'Mark as read';
+      books.style.borderColor = book.read ? 'rgb(147, 255, 147)' : 'rgb(255, 136, 136)';
+
+//////
+    });
+
+    books.appendChild(toggleStatusButton);
     books.appendChild(removeBookButton);
     gridDiv.appendChild(books);
     newBookButton.textContent = 'Add Book';
+    //removes a book on click
     removeBookButton.addEventListener('click', () => books.remove());
+   
   });
 };
 
@@ -63,3 +85,8 @@ newBookButton.addEventListener('click', () => {
     newBookButton.textContent = 'Add Book';
   }
 });
+// toggles between book read and book not read
+// const toggleStatusButton = document.querySelector('.toggle-status');
+
+
+
